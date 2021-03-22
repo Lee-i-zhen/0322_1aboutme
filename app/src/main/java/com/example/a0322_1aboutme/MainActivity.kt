@@ -14,6 +14,7 @@ import com.example.a0322_1aboutme.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding //ActivityMainBinding表示跟隨哪個layout
+    private var myName: MyName = MyName("Eyebrow","yummy")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +27,16 @@ class MainActivity : AppCompatActivity() {
         binding.nicknameText.setOnClickListener{
             updateNickname(it)
         }
+        binding.myName = myName
+
+
     }
 
     private fun addNickname(view: View){
 
         binding.apply {
-            nicknameText.text = binding.nicknameEdit.text
+            myName?.nickname = nicknameEdit.text.toString()
+            invalidateAll()
             nicknameEdit.visibility = View.GONE //隱藏輸入欄
             doneButton.visibility = View.GONE
             nicknameText.visibility = View.VISIBLE
